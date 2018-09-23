@@ -15,7 +15,8 @@ public class StartScene : MonoBehaviour {
         if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
         {
             ////トリガー押されたら
-            SceneManager.LoadScene("SampleScene");
+        //    FadeManager.Instance.LoadScene("StartScene", 2.0f);
+            SceneManager.LoadScene("CharacterSelectScene");
         }
     }
 }
