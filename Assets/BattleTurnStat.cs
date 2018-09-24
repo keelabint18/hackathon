@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public class BattleTurnStat : MonoBehaviour
 {
+    Animator tsunomaruAnimation;
 
-    public bool MagicSlime_janken;
-    public bool AttackCat_janken;
-    public bool DefendHuman_janken;
+    private int TurnCount = 1;
+
     // Use this for initialization
     void Start()
     {
@@ -46,13 +48,28 @@ public class BattleTurnStat : MonoBehaviour
     //ダメージを与える。引数として被撃するキャラクター名、および受けるダメージが必要
     void AttackDamaged(string DamagedCharacter,int damage) {
         (GameObject.Find(DamagedCharacter).GetComponent<CharacterStat>().HP) = (GameObject.Find(DamagedCharacter).GetComponent<CharacterStat>().HP) - (damage);
+        //ダメージが０以下となるとき
+       /* if ((GameObject.Find(DamagedCharacter).GetComponent<CharacterStat>().HP) <= 0) {
+            //resultのシーンに移行
+            SceneManager.LoadScene("ResultScene");
+        }*/
+
+        TurnCount++;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+ //       if (Input.anyKey) {
+            // SetCharacterJankenStat(Random.Range(1, 3), "slime", Random.Range(1, 3), "tsunomaru");
+        /*    AttackDamaged("slime", 34);
+            Debug.Log(GameObject.Find("slime").GetComponent<CharacterStat>().HP);
+            */
+ //       }
         //1のときグー、2のときチョキ、3のときパー
         //SetCharacterJankenStat(r, "MagicSlime", r, "AttackCat");
         //JudgeJanken_Character("MagicSlime", "AttackCat");
+
     }
 }

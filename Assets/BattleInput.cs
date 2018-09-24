@@ -18,7 +18,7 @@ public class BattleInput : MonoBehaviour {
         //            rigidbody.AddForce(Vector3.forward * 1.5f);
         //       }
         if (Input.GetKeyDown(KeyCode.W)) {
-                  Rigidbody rigidbody 
+             
         }
 	}
 }
