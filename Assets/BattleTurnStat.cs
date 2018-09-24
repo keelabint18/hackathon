@@ -43,10 +43,9 @@ public class BattleTurnStat : MonoBehaviour
     }
 
 
-    //攻撃を開始する。ジャンケンの判定で勝ったほうが実行する。引数として現在経過しているターン数と、勝ったほうのキャラクター名を持ってくる。
-    int AttackStart(string Character,int CountTurn) {
-        //キャラクターの移動、ダメージを与える、受けるなどの処理
-        return CountTurn + 1;
+    //ダメージを与える。引数として被撃するキャラクター名、および受けるダメージが必要
+    void AttackDamaged(string DamagedCharacter,int damage) {
+        (GameObject.Find(DamagedCharacter).GetComponent<CharacterStat>().HP) = (GameObject.Find(DamagedCharacter).GetComponent<CharacterStat>().HP) - (damage);
     }
 
     // Update is called once per frame
