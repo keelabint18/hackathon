@@ -16,7 +16,7 @@ public class StartScene : MonoBehaviour {
         {
             ////トリガー押されたら
         //    FadeManager.Instance.LoadScene("StartScene", 2.0f);
-            SceneManager.LoadScene("CharacterSelectScene");
+            SceneManager.LoadScene("BattleScene");
         }
     }
 }

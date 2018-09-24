@@ -13,6 +13,7 @@ public class CharacterStat : MonoBehaviour {
     public int MagicA;
     public int Attack;
     public int Defend;
+    public int janken_status;
 
     public bool attack_stat;
     public bool defend_stat;
