@@ -14,11 +14,11 @@ public class BattleTurnStat : MonoBehaviour {
 	void Start () {
 	}
 
-    bool JudgeJanken_Character(int flag, string MyCharacter,string EnemyCharacter)
+    bool JudgeJanken_Character(string MyCharacter,string EnemyCharacter)
     {
         if (GameObject.Find(MyCharacter).GetComponent<CharacterStat>().janken_status == GameObject.Find(EnemyCharacter).GetComponent<CharacterStat>().janken_status)
         {   //あいこのとき
-            continue;
+            return false;
         }
         else if ((GameObject.Find(MyCharacter).GetComponent<CharacterStat>().janken_status == 1) && (GameObject.Find(EnemyCharacter).GetComponent<CharacterStat>().janken_status == 3))
         {
@@ -35,41 +35,16 @@ public class BattleTurnStat : MonoBehaviour {
         }
     }
 
-    int SetCharacterJunkenStat(int Myjunken,string MyCharacter,int EnemyJanken,string EnemyCharacter) {
-
+    void SetCharacterJankenStat(int MyJanken,string MyCharacter,int EnemyJanken,string EnemyCharacter) {
+        GameObject.Find(MyCharacter).GetComponent<CharacterStat>().janken_status = MyJanken;
+        GameObject.Find(MyCharacter).GetComponent<CharacterStat>().janken_status = EnemyJanken;
     }
 
     // Update is called once per frame
     void Update () {
         //1のときグー、2のときチョキ、3のときパー
 
-        int jankenSet = r.Next(1, 4);
-
-
-
-        GameObject.Find("MagicSlime").GetComponent<CharacterStat>().janken_status = r.Next(1, 4);
-        GameObject.Find("AttackCat").GetComponent<CharacterStat>().janken_status = r.Next(1, 4);
-        GameObject.Find("DefendHuman").GetComponent<CharacterStat>().janken_status = r.Next(1, 4);
-
-        //あいこのとき
-        if (GameObject.Find("MagicSlime").GetComponent<CharacterStat>().janken_status == GameObject.Find("AttackCat").GetComponent<CharacterStat>().janken_status) {
-            return;
-        }
-
-        //まほうスライムがじゃんけんでかつとき
-        if ( (GameObject.Find("MagicSlime").GetComponent<CharacterStat>().janken_status < GameObject.Find("AttackCat").GetComponent<CharacterStat>().janken_status)
-             || (GameObject.Find("MagicSlime").GetComponent<CharacterStat>().janken_status < GameObject.Find("DefendHuman").GetComponent<CharacterStat>().janken_status) 
-           )
-        {
-            GameObject.Find("MagicSlime").GetComponent<CharacterStat>().attack_stat = true;
-        }
-        //まけるとき
-        else {
-            GameObject.Find("AttackCat").GetComponent<CharacterStat>().attack_stat = true;
-        }
-
-
-
-
+        SetCharacterJankenStat(r.Next(1, 4), "MagicSlime", r.Next(1, 4), "AttackCat");
+        JudgeJanken_Character("MagicSlime", "AttackCat");
 	}
 }
